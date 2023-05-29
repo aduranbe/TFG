@@ -17,6 +17,7 @@ public class GM : MonoBehaviour
     private bool activeMove;
     private bool tapaPressed = false;
     public GameObject flechaTapa;
+    public GameObject flechaLaberinto;
     public GameObject objLaberinto;
     public bool movLab=false;
     private Vector3 posNextLab;
@@ -171,7 +172,7 @@ public class GM : MonoBehaviour
                 {
                     objLaberinto.GetComponent<BoxCollider>().enabled = true;
                     Invoke("CompLab",0.5f);
-                }
+                    }
             }
         }
         #endregion
@@ -283,7 +284,6 @@ public class GM : MonoBehaviour
             saveLastHit.gameObject.transform.GetChild(0).GetChild(2).gameObject.SetActive(false);
             detectHit.gameObject.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
             saveLastHit = detectHit;
-            Debug.Log("a");
         }
         else
         {
@@ -416,6 +416,12 @@ public class GM : MonoBehaviour
             }
         }
         controlLab.correcto = true;
+        flechaLaberinto.SetActive(true);
+    }
+    public void TapaLabAnim(GameObject tapa)
+    {
+        flechaLaberinto.SetActive(false);
+        tapa.GetComponent<Animator>().SetBool("Abrir", true);
     }
     #endregion
 }
